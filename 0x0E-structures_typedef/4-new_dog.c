@@ -1,18 +1,47 @@
 #include "dog.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
- * free_dog - free memory of dog
- * @d: pointer to dog
+ * new_dog - new dog
+ * @name: name's dog
+ * @age: age's dog
+ * @owner: owner's dog
+ * Return: newdog
  */
-void free_dog(dog_t *d)
+dog_t *new_dog(char *name, float age, char *owner)
 {
-if (d)
+int i = 0, j = 0, k;
+dog_t *doge;
+while (name[i] != '\0')
+i++;
+while (owner[j] != '\0')
+j++;
+doge = malloc(sizeof(dog_t));
+if (doge == NULL)
 {
-if (d->name)
-free(d->name);
-if (d->owner)
-free(d->owner);
-free(d);
+free(doge);
+return (NULL);
 }
+doge->name = malloc(i *sizeof(doge->name));
+if (doge->name == NULL)
+{
+free(doge->name);
+free(doge);
+return (NULL);
+}
+for (k = 0; k <= i; k++)
+doge->name[k] = name[k];
+doge->age = age;
+doge->owner = malloc(j *sizeof(doge->owner));
+if (doge->owner == NULL)
+{
+free(doge->owner);
+free(doge->name);
+free(doge);
+return (NULL);
+}
+for (k = 0; k <= j; k++)
+doge->owner[k] = owner[k];
+return (doge);
 }
