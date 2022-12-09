@@ -38,7 +38,6 @@ int ch;
 int vch;
 ch = vch = 0;
 while (vch < len)
-{
 ch = ch + usrn[vch] * usrn[vch];
 vch += 1;
 }
